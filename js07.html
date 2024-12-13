@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>js07</title>
+    <style>
+        img {
+            max-width: 80%;
+            max-height: 80%;
+            display: block;
+            margin: auto;
+        }
+    </style>
+    <script type="text/javascript">
+        // 刷新出效果
+        // window.onload=function(){
+        //     var advs=['./images/1.webp','./images/2.jpg','./images/3.jpg','./images/4.jpg'];
+        //     var advImg=document.querySelector("img");
+        //     index=Math.floor(Math.random() *advs.length);
+        //     Math.random();
+        //     advImg.src=advs[index];
+        // }
+        // -------------------------------------------------------
+        var advs=new Array('./images/1.webp','./images/2.jpg','./images/3.jpg','./images/4.jpg');
+        var index=0;
+        function changeImg(){
+            var advImg=document.querySelector("img");
+            advImg.src=advs[index];
+            // 取模
+            index=++index%advs.length;
+        }
+        // 图片轮播几次后可以跳转到别的页面
+        // function jump(){
+        //     window.location.href="https://www.doubao.com/chat/490755205779714"  
+        // }
+        var timeid;
+        window.onload=function(){
+            // 鼠标放在图片上时，不再进行轮播（定时）
+        //     var imgElement=document.querySelector("img");
+        //     imgElement.addEventListener("mouseover", function () {
+        //         clearInterval(intervalId);
+        //     });
+        //     imgElement.addEventListener("mouseout", function () {
+        //         intervalId = setInterval(changeImg, 2000);
+        //     });
+        //    var intervalId=setInterval(changeImg,2000);
+           timeid=window.setInterval(changeImg,2000);
+           var advImg=document.querySelector("img");
+           advImg.onmouseover=function(){
+                window.clearInterval(timeid);
+           }
+           advImg.onmouseout=function(){
+                timeid=window.setInterval(changeImg,2000);
+            }
+            // 跳转
+            // window.setTimeout(jump,5000);
+        }
+
+    </script>
+</head>
+<body>
+    <img src="">
+</body>
+</html>
